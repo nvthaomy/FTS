@@ -33,7 +33,10 @@ for line in lines:
         pair = pairs[pot]  
         print(pot)
     if "'B'" in line.split(): 
-        B = float(line.split()[2])
+        tempB =  line.split()[2]
+        if ',' in tempB:
+            tempB = tempB.split(',')[0]
+        B = float(tempB)
         u0 = B * (2*np.pi * (a[pair[0]]**2 + a[pair[1]]**2))**(3./2.)
         u0 *= lengthScale**3 #convert to real unit
         BFTS_tmp = u0 * Nref**2 / Rg0**3

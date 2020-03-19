@@ -259,17 +259,18 @@ print('... Final average C: {}'.format(Cavg))
 print('... Now Running ...')
 
 #Run
-with open('template_CL.in','r') as myfile:
+with open(template,'r') as myfile:
     ini=myfile.read()
     ini=re.sub('__C__',str(Cavg),ini)
     ini=re.sub('__x1__',str(x1),ini)
     ini=re.sub('__x2__',str(x2),ini)
     ini=re.sub('__x3__',str(x3),ini)
     ini=re.sub('__NumBlocks__',str(numBlocks*10),ini)
+    ini=re.sub('__idealterm__',str(includeIdealTerm),ini)
     runfile = open("run.in","w")
     runfile.write(ini)
     runfile.close()
-call(["/home/kshen/lib/PolyFTS/bin/Release/PolyFTS.x","run.in"])
+call(["/home/mnguyen/bin/PolyFTS/bin/Release/PolyFTSPLL.x","run.in"])
 
 
 print('Final average C: {}'.format(Cavg))
